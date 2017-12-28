@@ -14,8 +14,8 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 
 /**
- * Title.<br>
- * 工具类 Description. 作者： Renky 链接：https:// www.jianshu.com/p/2fdc20a42c41
+ * Title.工具类 <br>
+ * Description. 作者： Renky 链接：https:// www.jianshu.com/p/2fdc20a42c41
  * <p>
  * Copyright: Copyright (c) 2017年12月26日 下午2:40:33
  * <p>
