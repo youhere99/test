@@ -1,5 +1,11 @@
 package enums;
 
+import java.util.EnumMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang3.EnumUtils;
+
 /**
  * Title.<br>
  * Description.
@@ -51,5 +57,19 @@ public enum Color {
 
 	public void setIndex(int index) {
 		this.index = index;
+	}
+
+	public static void main(String[] args) {
+		// 枚举为value
+		Map<?, Color> enumMap = EnumUtils.getEnumMap(Color.class);
+		System.err.println(enumMap);
+		System.err.println(enumMap.get("RED"));
+		// 枚举为key
+		EnumMap<Color, String> enumMap2 = new EnumMap<Color, String>(Color.class);
+		enumMap2.put(GREEN, "3");
+		System.err.println(enumMap2);
+
+		List<Color> enumList = EnumUtils.getEnumList(Color.class);
+		System.err.println(enumList);
 	}
 }

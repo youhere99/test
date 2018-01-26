@@ -3,6 +3,9 @@ package enums;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.Iterator;
+import java.util.Map;
+
+import org.apache.commons.lang3.EnumUtils;
 
 /**
  * Title.<br>
@@ -115,6 +118,8 @@ public class LightTest {
 			System.out.println("[key=" + aLight.name() + ",value=" + currEnumMap.get(aLight) + "]");
 		}
 
+		Map<String, Light> enumMap = EnumUtils.getEnumMap(Light.class);
+		System.err.println(enumMap);
 	}
 
 	/**
