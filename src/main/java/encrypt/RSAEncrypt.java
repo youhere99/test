@@ -52,9 +52,9 @@ public class RSAEncrypt {
 		RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
 		try {
 			// 得到公钥字符串
-			String publicKeyString = Base64.encode(publicKey.getEncoded());
+			String publicKeyString = CustomBase64.encode(publicKey.getEncoded());
 			// 得到私钥字符串
-			String privateKeyString = Base64.encode(privateKey.getEncoded());
+			String privateKeyString = CustomBase64.encode(privateKey.getEncoded());
 			// 将密钥对写入到文件
 			FileWriter pubfw = new FileWriter(filePath + "/publicKey.keystore");
 			FileWriter prifw = new FileWriter(filePath + "/privateKey.keystore");
@@ -111,7 +111,7 @@ public class RSAEncrypt {
 	 */
 	public static RSAPublicKey loadPublicKeyByStr(String publicKeyStr) throws Exception {
 		try {
-			byte[] buffer = Base64.decode(publicKeyStr);
+			byte[] buffer = CustomBase64.decode(publicKeyStr);
 			KeyFactory keyFactory = KeyFactory.getInstance("RSA");
 			X509EncodedKeySpec keySpec = new X509EncodedKeySpec(buffer);
 			return (RSAPublicKey) keyFactory.generatePublic(keySpec);
@@ -156,7 +156,7 @@ public class RSAEncrypt {
 
 	public static RSAPrivateKey loadPrivateKeyByStr(String privateKeyStr) throws Exception {
 		try {
-			byte[] buffer = Base64.decode(privateKeyStr);
+			byte[] buffer = CustomBase64.decode(privateKeyStr);
 			PKCS8EncodedKeySpec keySpec = new PKCS8EncodedKeySpec(buffer);
 			KeyFactory keyFactory = KeyFactory.getInstance("RSA");
 			return (RSAPrivateKey) keyFactory.generatePrivate(keySpec);
@@ -370,9 +370,9 @@ public class RSAEncrypt {
 		String plainText = "ihep_公钥加密私钥解密";
 		// 公钥加密过程
 		byte[] cipherData = RSAEncrypt.encrypt(RSAEncrypt.loadPublicKeyByStr(RSAEncrypt.loadPublicKeyByFile(filepath)), plainText.getBytes());
-		String cipher = Base64.encode(cipherData);
+		String cipher = CustomBase64.encode(cipherData);
 		// 私钥解密过程
-		byte[] res = RSAEncrypt.decrypt(RSAEncrypt.loadPrivateKeyByStr(RSAEncrypt.loadPrivateKeyByFile(filepath)), Base64.decode(cipher));
+		byte[] res = RSAEncrypt.decrypt(RSAEncrypt.loadPrivateKeyByStr(RSAEncrypt.loadPrivateKeyByFile(filepath)), CustomBase64.decode(cipher));
 		String restr = new String(res);
 		System.out.println("原文：" + plainText);
 		System.out.println("加密：" + cipher);
@@ -383,9 +383,9 @@ public class RSAEncrypt {
 		plainText = "ihep_私钥加密公钥解密";
 		// 私钥加密过程
 		cipherData = RSAEncrypt.encrypt(RSAEncrypt.loadPrivateKeyByStr(RSAEncrypt.loadPrivateKeyByFile(filepath)), plainText.getBytes());
-		cipher = Base64.encode(cipherData);
+		cipher = CustomBase64.encode(cipherData);
 		// 公钥解密过程
-		res = RSAEncrypt.decrypt(RSAEncrypt.loadPublicKeyByStr(RSAEncrypt.loadPublicKeyByFile(filepath)), Base64.decode(cipher));
+		res = RSAEncrypt.decrypt(RSAEncrypt.loadPublicKeyByStr(RSAEncrypt.loadPublicKeyByFile(filepath)), CustomBase64.decode(cipher));
 		restr = new String(res);
 		System.out.println("原文：" + plainText);
 		System.out.println("加密：" + cipher);

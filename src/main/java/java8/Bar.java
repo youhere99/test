@@ -38,6 +38,7 @@ public class Bar {
 			b[0] = 3;
 			Bar.lamdar = "lambda.change";
 			new Bar().lamdar2 = "lambda2.change";
+
 			return 0.0;
 		};
 

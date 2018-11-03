@@ -1,6 +1,6 @@
 package encrypt;
 
-public final class Base64 {
+public final class CustomBase64 {
 
 	static private final int BASELENGTH = 128;
 
