@@ -66,6 +66,9 @@
 	<listener>
 		<listener-class>util.ProjectPathListener</listener-class>
 	</listener>
+	<listener>
+		<listener-class>sso.CustomSSOClientEventListener</listener-class>
+	</listener>
 	
 		<!-- 配置字符集过滤器 -->
 	<filter>
@@ -80,6 +83,19 @@
             <param-value>true</param-value>  
         </init-param> 
 	</filter>
+	<filter>
+		<filter-name>OriginalSSOFilter</filter-name>
+		<filter-class>com.resoft.baseoriginal.tools.sso.client.OriginalSSOFilter</filter-class>
+		<init-param>
+			<param-name>OriginalSSOConfigFile</param-name>
+			<param-value>sso_client_conf.properties</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>OriginalSSOFilter</filter-name>
+		<url-pattern>/request/info.do</url-pattern>
+	</filter-mapping>
+	
 	<session-config>
 		<session-timeout>120</session-timeout>
 	</session-config>

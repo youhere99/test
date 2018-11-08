@@ -295,7 +295,12 @@
 			<artifactId>java-uuid-generator</artifactId>
 			<version>3.1.4</version>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/org.jodd/jodd-core -->
+		<dependency>
+			<groupId>org.jodd</groupId>
+			<artifactId>jodd-core</artifactId>
+			<version>5.0.6</version>
+		</dependency>
 	</dependencies>
 
 	<build>

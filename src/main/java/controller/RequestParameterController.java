@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.util.Collection;
 import java.util.Enumeration;
 import java.util.Locale;
 
@@ -10,30 +9,34 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.stereotype.Controller;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
- * HttpServletRequset 常用方法总结
- * Title.<br> 
+ * HttpServletRequset 常用方法总结 Title.<br>
  * Description.
  * <p>
  * Copyright: Copyright (c) 2015年11月17日 下午2:29:05
  * <p>
  * Company: 北京中电翔云科技有限公司
  * <p>
+ * 
  * @author ZhaoMingxing
  * @version 1.0
  */
-@Controller
+@RestController
 @RequestMapping("/request/*")
 public class RequestParameterController {
 
+	private static final Logger log = LoggerFactory.getLogger(RequestParameterController.class);
+
 	@RequestMapping("info.do")
-	public void requestInfo(ModelMap model, HttpServletRequest request, HttpServletResponse response) throws IllegalStateException, IOException,
-	        ServletException {
-		//		Check for valid session: isRequestedSessionIdValid() vs getSession(false)
+	public String requestInfo(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+			throws IllegalStateException, IOException, ServletException {
+		// Check for valid session: isRequestedSessionIdValid() vs getSession(false)
 		String localAddr = request.getLocalAddr();
 		System.err.println(localAddr);
 		String localName = request.getLocalName();
@@ -62,10 +65,11 @@ public class RequestParameterController {
 		String requestURL = request.getRequestURL().toString();
 		String servletPath = request.getServletPath();
 		String characterEncoding = request.getCharacterEncoding();
-		Collection parts = request.getParts(); //获取上传的文件集合
+		// Collection parts = request.getParts(); //获取上传的文件集合
 		Boolean isSecure = request.isSecure();
 		Boolean requestedSessionIdValid = request.isRequestedSessionIdValid();
 		Principal principal = request.getUserPrincipal();
-
+		log.info("----------测试--------");
+		return "测试";
 	}
 }

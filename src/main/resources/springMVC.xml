@@ -22,7 +22,7 @@
        
 
  	<!-- 自动扫描的包名 -->
- 	<context:component-scan base-package="controller,word" />
+ 	<context:component-scan base-package="controller,word,rest" />
 <!-- 	默认的注解映射的支持 ,建议手动配置 -->
 	<mvc:annotation-driven/>	
 	
