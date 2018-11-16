@@ -9,6 +9,9 @@ import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESKeySpec;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * JAVA DES加密和解密工具类:https://my.oschina.net/kkrgwbj/blog/655215<br/>
  * description:
@@ -17,17 +20,19 @@ import javax.crypto.spec.DESKeySpec;
  *
  */
 public class DESUtil {
+	private static final Logger log = LoggerFactory.getLogger(DESUtil.class);
 	private final static String DES = "DES";
 	private final static String UTF_8 = "UTF-8";
 
+	// 测试
 	public static void main(String[] args) throws Exception {
 
-		String data = "http://127.0.0.1:8771/home/index";
-		String key = "fab45e16121043a0a9049b818d2020bf";
-
+		String data = "http://127.0.0.1:8771/receivesys/home";
+		String key = "535a270a5f76443e811555226bbd1886";
+		String encrypt = "FIJyU1ypK2PMtXfS_61SSIELaykL9UD5Vj4P2sZ5n776dc6Eq-D2Sw==";
 		System.err.println("加密前:" + data);
 		System.err.println("加密后:" + encrypt(data, key));
-		System.err.println("解密后:" + decrypt(encrypt(data, key), key));
+		System.err.println("解密后:" + decrypt(encrypt, key));
 
 	}
 
@@ -40,10 +45,15 @@ public class DESUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static String encrypt(String data, String key) throws Exception {
-		byte[] bt = encrypt(data.getBytes(UTF_8), key.getBytes(UTF_8));
-		String strs = Base64.getEncoder().encodeToString(bt);
-		return strs;
+	public static String encrypt(String data, String key) {
+		try {
+			byte[] bt = encrypt(data.getBytes(UTF_8), key.getBytes(UTF_8));
+			String strs = Base64.getUrlEncoder().encodeToString(bt);
+			return strs;
+		} catch (Exception e) {
+			log.error("-----------加密异常----------", e);
+			return "";
+		}
 	}
 
 	/**
@@ -56,12 +66,17 @@ public class DESUtil {
 	 * @throws IOException
 	 * @throws Exception
 	 */
-	public static String decrypt(String data, String key) throws IOException, Exception {
-		if (data == null)
-			return null;
-		byte[] buf = Base64.getDecoder().decode(data.getBytes(UTF_8));
-		byte[] bt = decrypt(buf, key.getBytes(UTF_8));
-		return new String(bt);
+	public static String decrypt(String data, String key) {
+		try {
+			if (data == null)
+				return null;
+			byte[] buf = Base64.getUrlDecoder().decode(data.getBytes(UTF_8));
+			byte[] bt = decrypt(buf, key.getBytes(UTF_8));
+			return new String(bt);
+		} catch (Exception e) {
+			log.error("-----------解密异常----------", e);
+			return "";
+		}
 	}
 
 	/**

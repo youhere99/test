@@ -34,17 +34,17 @@ public class RequestParameterController {
 	private static final Logger log = LoggerFactory.getLogger(RequestParameterController.class);
 
 	@RequestMapping("info.do")
-	public String requestInfo(ModelMap model, HttpServletRequest request, HttpServletResponse response)
+	public String info(ModelMap model, HttpServletRequest request, HttpServletResponse response)
 			throws IllegalStateException, IOException, ServletException {
 		// Check for valid session: isRequestedSessionIdValid() vs getSession(false)
 		String localAddr = request.getLocalAddr();
-		System.err.println(localAddr);
+		log.info("localAddr{}", localAddr);
 		String localName = request.getLocalName();
 		Integer localPort = request.getLocalPort();
 		Locale locale = request.getLocale();
 		Enumeration<Locale> enum_local = request.getLocales();
 		String remoteAddr = request.getRemoteAddr();
-		System.err.println(remoteAddr);
+		log.info("remoteAddr{}", remoteAddr);
 		String remoteHost = request.getRemoteHost();
 		String remoteUser = request.getRemoteUser();
 		Integer remotePort = request.getRemotePort();
@@ -69,7 +69,17 @@ public class RequestParameterController {
 		Boolean isSecure = request.isSecure();
 		Boolean requestedSessionIdValid = request.isRequestedSessionIdValid();
 		Principal principal = request.getUserPrincipal();
-		log.info("----------测试--------");
-		return "测试";
+		log.info("requestURI{}", requestURI);
+		log.info("requestURL{}", requestURL);
+		return "info";
+	}
+
+	@RequestMapping("info1.do")
+	public String info1(ModelMap model, HttpServletRequest request, HttpServletResponse response) {
+		String requestURI = request.getRequestURI();
+		String requestURL = request.getRequestURL().toString();
+		log.info("requestURI{}", requestURI);
+		log.info("requestURL{}", requestURL);
+		return "info1";
 	}
 }

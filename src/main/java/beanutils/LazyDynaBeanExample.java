@@ -7,7 +7,7 @@ import org.apache.commons.beanutils.LazyDynaBean;
 
 /**
  * Title.<br>
- * Description.动态地生成类，并设置值和取得值
+ * Description.动态地生成类，并设置值和取得值，，，，https://www.cnblogs.com/chenpi/p/6919343.html
  * <p>
  * Copyright: Copyright (c) 2014-10-30 上午10:36:05
  * <p>
@@ -30,11 +30,12 @@ public class LazyDynaBeanExample {
 
 			System.out.println(BeanUtils.getProperty(person, "name"));
 			System.out.println(BeanUtils.getProperty(person, "password"));
-		}
-		catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
+		} catch (IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
+	// public void test
 
 }
