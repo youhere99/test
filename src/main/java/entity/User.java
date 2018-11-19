@@ -2,6 +2,8 @@ package entity;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+
 public class User implements Serializable {
 
 	/**
@@ -76,5 +78,10 @@ public class User implements Serializable {
 	}
 
 	public User() {
+	}
+
+	@Override
+	public String toString() {
+		return ReflectionToStringBuilder.toString(this);
 	}
 }

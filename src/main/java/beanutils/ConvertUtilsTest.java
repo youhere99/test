@@ -1,7 +1,11 @@
-package test;
+package beanutils;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentMap;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.converters.StringConverter;
 import org.junit.Test;
@@ -9,8 +13,10 @@ import org.junit.Test;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
+import entity.User;
+
 /**
- * 
+ * https://www.cnblogs.com/chenpi/p/6920896.html<br>
  * description:类型转换工具类
  * 
  * @author zhaomingxing 2018年11月15日
@@ -53,6 +59,23 @@ public class ConvertUtilsTest {
 		System.err.println(
 				"(stringConverter.convert(Integer.class, \"aa\"):::" + stringConverter.convert(Integer.class, "aa"));
 
+	}
+
+	@Test
+	public void testB() throws IllegalAccessException, InvocationTargetException {
+
+		ConvertUtils.register(new CustomStringConverter(), String.class);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("username", "001");
+		map.put("address", "hz");
+		map.put("age", 100);
+		map.put("gender", true);
+
+		User u = new User();
+		BeanUtils.populate(u, map);
+
+		System.out.println(u);
 	}
 
 }
