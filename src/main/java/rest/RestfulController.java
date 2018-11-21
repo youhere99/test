@@ -24,7 +24,7 @@ import jodd.PropertyConstans;
 
 @RestController
 @RequestMapping(value = "/springrestexample")
-public class HelloController {
+public class RestfulController {
 	/**
 	 * 
 	 * @return 2018年11月7日 zhaomingxing
