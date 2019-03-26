@@ -2,6 +2,7 @@ package test;
 
 import java.text.DecimalFormat;
 
+//https://blog.csdn.net/u012454773/article/details/49724127
 public class BaoLiuXiaoShu {
 
 	public void format1(String pattern, double value) { // 此方法专门用于完成数字的格式化显示
@@ -11,6 +12,9 @@ public class BaoLiuXiaoShu {
 	}
 
 	public static void main(String args[]) {
+		for (String s : args) {
+			System.err.println(s);
+		}
 		BaoLiuXiaoShu demo = new BaoLiuXiaoShu(); // 格式化对象的类
 		demo.format1("###,###.###", 111222.34567);
 		demo.format1("000,000.000", 11222.34567);

@@ -2,13 +2,47 @@ package path;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DecimalFormat;
 
 import javax.swing.filechooser.FileSystemView;
 
 import org.junit.Test;
 
+/**
+ * 
+ * description:https://www.jianshu.com/p/17b8e042a90b
+ * 
+ * @author zhaomingxing 2019年1月8日
+ *
+ */
 public class FilePathTest {
+
+	@Test
+	public void testPath() {
+		Path currentDir = Paths.get(".");
+		System.out.println(currentDir.toAbsolutePath());
+
+		currentDir = Paths.get("..");
+		System.out.println(currentDir.toAbsolutePath());
+
+		currentDir = Paths.get("d:\\data\\projects\\a-project\\..\\another-project");
+		System.out.println(currentDir.toAbsolutePath());
+
+		currentDir = currentDir.normalize();
+		System.out.println("currentDir.normalize()--->" + currentDir.toAbsolutePath());
+
+		currentDir = Paths.get("d:\\data\\projects\\.\\a-project");
+		System.out.println(currentDir.toAbsolutePath());
+
+		currentDir = currentDir.normalize();
+		System.out.println("currentDir.normalize()--->" + currentDir.toAbsolutePath());
+
+		currentDir = Paths.get("/home/jakobjenkov/myfile.txt");
+		System.out.println(currentDir.toAbsolutePath());
+
+	}
 
 	@Test
 	public void test_File() throws IOException {
