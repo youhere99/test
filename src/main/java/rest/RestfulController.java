@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.alibaba.fastjson.JSONObject;
+import com.google.common.collect.Maps;
 
 import jodd.PropertyConstans;
 
@@ -110,7 +112,7 @@ public class RestfulController {
 	 */
 	@Test
 	public void updateEmployee() {
-		final String uri = "http://localhost:8080/springrestexample/employees/{id}";
+		final String uri = "http://localhost:8080/test/springrestexample/employees/{id}";
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("id", "2");
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -128,4 +130,50 @@ public class RestfulController {
 		RestTemplate restTemplate = new RestTemplate();
 		restTemplate.put(uri, map, params);
 	}
+
+	@RequestMapping(value = "/employees/{id}", method = RequestMethod.GET)
+	public ResponseEntity<Map<String, Object>> getEmployeeById(@PathVariable("id") String id,
+			@RequestParam Map<String, Object> params, HttpServletRequest request) {
+		System.err.println(request.getParameter("name"));
+		System.err.println(params);
+		HashMap<String, Object> map = Maps.newHashMap();
+		map.put("id", id);
+		// map.put("name", name);
+		map.put("email", "test@email.com");
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+		// return new ResponseEntity(HttpStatus.NOT_FOUND);
+	}
+
+	@Test
+	public void getEmployeeById() {
+		final String uri = "http://localhost:8080/test/springrestexample/employees/{id}.do?name=name..";
+
+		// Map<String, String> params = new HashMap<String, String>();
+		// params.put("id", "1");
+		// params.put("name", "name..");
+
+		RestTemplate restTemplate = new RestTemplate();
+		Map<String, Object> result = restTemplate.getForObject(uri, Map.class, "1");
+
+		System.out.println(result);
+	}
+	/// **
+	// *
+	// *
+	// * 2019年6月20日 zhaomingxing
+	// */
+	// @Test
+	// public void getEmployeeById1() {
+	// final String uri =
+	/// "http://localhost:8080/test/springrestexample/employees/{id}.do";
+	// Map<String, Object> map = new HashMap<>();
+	// map.put("name", "name..");
+	// RestTemplate restTemplate = new RestTemplate();
+	// ResponseEntity<Map> responseEntity = restTemplate.exchange(uri,
+	/// HttpMethod.POST, new HttpEntity<>(map),
+	// Map.class, "1");
+	//
+	// System.out.println(responseEntity);
+	// }
+
 }
