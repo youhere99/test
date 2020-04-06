@@ -1,17 +1,17 @@
 package java8;
 
+import com.google.common.collect.Lists;
+import org.junit.Test;
+
 import java.util.ArrayList;
 import java.util.List;
-// import java.util.stream.Collectors;
-// import java.util.stream.IntStream;
-// import java.util.stream.Stream;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import org.junit.Test;
-
-import com.google.common.collect.Lists;
+// import java.util.stream.Collectors;
+// import java.util.stream.IntStream;
+// import java.util.stream.Stream;
 
 /**
  * Title.<br>
@@ -26,7 +26,7 @@ import com.google.common.collect.Lists;
  * @version 1.0
  */
 public class StreamTest {
-
+//你好吊的样子
 	@Test
 	public void testA() {
 		List<Integer> nums = Lists.newArrayList(1, 1, null, 2, 3, 4, null, 5, 6, 7, 8, 9, 10);
