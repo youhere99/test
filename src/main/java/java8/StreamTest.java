@@ -26,7 +26,8 @@ import java.util.stream.Stream;
  * @version 1.0
  */
 public class StreamTest {
-//你好吊的样子
+//你好吊的样子 --master
+//你好吊的样子 --dev
 	@Test
 	public void testA() {
 		List<Integer> nums = Lists.newArrayList(1, 1, null, 2, 3, 4, null, 5, 6, 7, 8, 9, 10);
