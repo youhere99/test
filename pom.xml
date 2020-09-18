@@ -26,6 +26,19 @@
 			<artifactId>commons-net</artifactId>
 			<version>3.6</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.verhas/license3j -->
+		<dependency>
+			<groupId>com.verhas</groupId>
+			<artifactId>license3j</artifactId>
+			<version>2.0.0-JVM8</version>
+		</dependency>
+<!--		针对Java 1.5 ... 1.8发行了License3j版本1.xx和2.0.0。3.0.0版完全重写了该库。API和二进制格式都不与以前的版本兼容。它还仅针对Java 11和更高版本发布，并且没有针对Java 8或更早版本的计划的反向版本。-->
+		<!-- https://mvnrepository.com/artifact/com.javax0.license3j/license3j -->
+<!--		<dependency>-->
+<!--			<groupId>com.javax0.license3j</groupId>-->
+<!--			<artifactId>license3j</artifactId>-->
+<!--			<version>3.1.5</version>-->
+<!--		</dependency>-->
 
 		<!-- spring -->
 		<dependency>
