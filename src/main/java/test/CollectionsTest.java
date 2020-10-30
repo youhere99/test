@@ -1,14 +1,6 @@
 package test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import java.util.WeakHashMap;
+import java.util.*;
 
 import org.apache.commons.beanutils.BeanPropertyValueChangeClosure;
 import org.apache.commons.beanutils.BeanPropertyValueEqualsPredicate;
@@ -154,6 +146,15 @@ public class CollectionsTest {
     @Test
     public void whenFilterWithIterables_thenFiltered() {
         List<String> names = Lists.newArrayList("John", "Jane", "Adam", "Tom");
+        ListIterator<String> listIterator = names.listIterator();
+        while (listIterator.hasNext()){
+            String next = listIterator.next();
+            if(next.equals("Jane")){
+                listIterator.remove();
+            }
+        }
+
+
         Iterable<String> result = Iterables.filter(names, Predicates.containsPattern("a"));
         System.err.println(result);
 
