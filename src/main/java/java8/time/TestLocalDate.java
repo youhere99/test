@@ -287,19 +287,34 @@ public class TestLocalDate {
 	public void testDuration() {
 	    LocalDate date1 = LocalDate.of(2017, 12, 12);
 	    LocalDate date2 = LocalDate.of(2017, 12, 24);
+
 	    LocalTime time1 = LocalTime.of(15, 7, 50);
 	    LocalTime time2 = LocalTime.of(16, 8, 50);
-	    LocalDateTime dateTime1 = LocalDateTime.of(2017, Month.MARCH, 12, 14, 22, 28);
-	    LocalDateTime dateTime2 = LocalDateTime.of(2018, Month.MARCH, 12, 14, 22, 28);
+	    Duration d1 = Duration.between(time1, time2);
+
+	    LocalDateTime dateTime1 = LocalDateTime.of(2017, Month.MARCH, 12, 00, 00, 00);
+	    LocalDateTime dateTime2 = LocalDateTime.of(2018, Month.MARCH, 11, 23, 59, 59);
+	    Duration d2 = Duration.between(dateTime1, dateTime2);
+
 	    Instant instant1 = Instant.ofEpochSecond(1);
 	    Instant instant2 = Instant.now();
-	    Duration d1 = Duration.between(time1, time2);
-	    Duration d2 = Duration.between(dateTime1, dateTime2);
 	    Duration d3 = Duration.between(instant1, instant2);
+
 	    System.out.println("TimeTest.testDuration d1: " + d1.getSeconds() +"\td2: " + d2.getSeconds() +"\td3: " + d3.getSeconds());
 	    System.out.println("TimeTest.testDuration d1: " + d1.toDays() +"\td2: " + d2.toDays() +"\td3: " + d3.toDays());
 	    // 这里会抛异常java.time.temporal.UnsupportedTemporalTypeException: Unsupported unit: Seconds
-	    Duration d4 = Duration.between(date1, date2);
+//	    Duration d4 = Duration.between(date1, date2);
+	}
+
+
+	@Test
+	public void testF(){
+		LocalDate startDate = LocalDate.of(2015, 2, 15);
+		LocalDate endDate = LocalDate.of(2017, 2, 21);
+
+		Period period = Period.between(startDate, endDate);
+
+		System.out.println(String.format("Years:%d months:%d days:%d", period.getYears(), period.getMonths(), period.getDays()));
 	}
 	
 }
